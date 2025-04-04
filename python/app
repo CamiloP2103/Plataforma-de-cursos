@@ -1,0 +1,69 @@
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token
+from config import Config
+
+app = Flask(__name__)
+app.config.from_object(Config)
+
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
+
+# Importar modelos después de inicializar db
+from models import Usuario
+
+@app.route('/registro', methods=['POST'])
+def registro():
+    data = request.get_json()
+    
+    # Validación básica
+    if not data or not data.get('email') or not data.get('password') or not data.get('nombre'):
+        return jsonify({'error': 'Faltan datos requeridos'}), 400
+    
+    # Verificar si el usuario ya existe
+    if Usuario.query.filter_by(email=data['email']).first():
+        return jsonify({'error': 'El email ya está registrado'}), 400
+    
+    # Crear nuevo usuario
+    nuevo_usuario = Usuario(
+        email=data['email'],
+        nombre=data['nombre']
+    )
+    nuevo_usuario.set_password(data['password'])
+    
+    # Guardar en la base de datos
+    db.session.add(nuevo_usuario)
+    db.session.commit()
+    
+    return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
+
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    
+    if not data or not data.get('email') or not data.get('password'):
+        return jsonify({'error': 'Faltan credenciales'}), 400
+    
+    usuario = Usuario.query.filter_by(email=data['email']).first()
+    
+    if not usuario or not usuario.check_password(data['password']):
+        return jsonify({'error': 'Credenciales inválidas'}), 401
+    
+    # Crear token JWT
+    access_token = create_access_token(identity=usuario.email)
+    
+    return jsonify({
+        'access_token': access_token,
+        'mensaje': 'Inicio de sesión exitoso',
+        'usuario': {
+            'email': usuario.email,
+            'nombre': usuario.nombre
+        }
+    }), 200
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
