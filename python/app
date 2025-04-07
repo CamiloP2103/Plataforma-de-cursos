@@ -1,69 +1,33 @@
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token
-from config import Config
+from flask import Flask, request, session, redirect
 
-app = Flask(__name__)
-app.config.from_object(Config)
+app = Flask(_name_, template_folder='templates', static_folder='static')
+app.secret_key = 'clave_secreta'  # Cambia esto en producción
 
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-jwt = JWTManager(app)
+# Usuarios de prueba (en producción usa una base de datos)
+USUARIOS = {
+    'admin': '1234',
+    'usuario1': 'password1'
+}
 
-# Importar modelos después de inicializar db
-from models import Usuario
-
-@app.route('/registro', methods=['POST'])
-def registro():
-    data = request.get_json()
-    
-    # Validación básica
-    if not data or not data.get('email') or not data.get('password') or not data.get('nombre'):
-        return jsonify({'error': 'Faltan datos requeridos'}), 400
-    
-    # Verificar si el usuario ya existe
-    if Usuario.query.filter_by(email=data['email']).first():
-        return jsonify({'error': 'El email ya está registrado'}), 400
-    
-    # Crear nuevo usuario
-    nuevo_usuario = Usuario(
-        email=data['email'],
-        nombre=data['nombre']
-    )
-    nuevo_usuario.set_password(data['password'])
-    
-    # Guardar en la base de datos
-    db.session.add(nuevo_usuario)
-    db.session.commit()
-    
-    return jsonify({'mensaje': 'Usuario registrado exitosamente'}), 201
+@app.route('/')
+def home():
+    return app.send_static_file('templates/index.html')
 
 @app.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    username = request.form.get('username')
+    password = request.form.get('password')
     
-    if not data or not data.get('email') or not data.get('password'):
-        return jsonify({'error': 'Faltan credenciales'}), 400
+    if username in USUARIOS and USUARIOS[username] == password:
+        session['usuario'] = username
+        return redirect('/')
     
-    usuario = Usuario.query.filter_by(email=data['email']).first()
-    
-    if not usuario or not usuario.check_password(data['password']):
-        return jsonify({'error': 'Credenciales inválidas'}), 401
-    
-    # Crear token JWT
-    access_token = create_access_token(identity=usuario.email)
-    
-    return jsonify({
-        'access_token': access_token,
-        'mensaje': 'Inicio de sesión exitoso',
-        'usuario': {
-            'email': usuario.email,
-            'nombre': usuario.nombre
-        }
-    }), 200
+    return "Credenciales incorrectas", 401
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+@app.route('/logout')
+def logout():
+    session.pop('usuario', None)
+    return redirect('/')
+
+if _name_ == '_main_':
     app.run(debug=True)
