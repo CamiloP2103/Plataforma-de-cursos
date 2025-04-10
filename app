@@ -1,6 +1,6 @@
 from flask import Flask, request, session, redirect, render_template
 
-app = Flask(__name__, template_folder='html', static_folder='static')
+app = Flask(__name__, template_folder='html', static_folder='css')
 app.secret_key = 'clave_secreta'
 
 USUARIOS = {
