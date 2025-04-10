@@ -1,9 +1,8 @@
-from flask import Flask, request, session, redirect
+from flask import Flask, request, session, redirect, render_template
 
-app = Flask(_name_, template_folder='templates', static_folder='static')
-app.secret_key = 'clave_secreta'  # Cambia esto en producción
+app = Flask(__name__, template_folder='html', static_folder='static')
+app.secret_key = 'clave_secreta'
 
-# Usuarios de prueba (en producción usa una base de datos)
 USUARIOS = {
     'admin': '1234',
     'usuario1': 'password1'
@@ -11,7 +10,7 @@ USUARIOS = {
 
 @app.route('/')
 def home():
-    return app.send_static_file('templates/index.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -29,5 +28,5 @@ def logout():
     session.pop('usuario', None)
     return redirect('/')
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)

@@ -35,11 +35,11 @@
 
     <section class="login-form" id="login">
       <h2 id="title_signin" style=" color: #ffffff;">Iniciar Sesión</h2>
-      <form>
-        <input type="text" placeholder="Usuario o correo" required>
-        <input type="password" placeholder="Contraseña" required>
+      <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Usuario o correo" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Entrar</button>
-      </form>
+      </form>      
     </section>
   <footer id="contacto">
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
