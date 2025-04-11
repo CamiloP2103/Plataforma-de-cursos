@@ -3,34 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - Mi Plataforma de Cursos</title>
+  <title>Inicio - Plataforma de Cursos</title>
   <link rel="stylesheet" href="../css/diseno.css">
 </head>
 <body>
   <header>
     <h1>Mi Plataforma de Cursos</h1>
     <nav>
-      <span class="bienvenida">Bienvenido, {{ usuario }}</span>
+      <span class="bienvenida">👋 Bienvenido, {{ usuario }}</span>
       <a href="/logout">Cerrar sesión</a>
     </nav>
   </header>
 
   <section class="main-content">
-    <h2 class="section-title">Tu Panel de Inicio</h2>
-    <p>¡Nos alegra tenerte de vuelta, {{ usuario }}! Explora tus cursos, revisa tu progreso y continúa aprendiendo 🚀.</p>
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Hola {{ usuario }} 👨‍💻</h2>
+      <p>¡Sigue aprendiendo y alcanza tus metas con nosotros!</p>
+      <a href="#cursos">Explorar Cursos</a>
+    </div>
 
-    <div class="courses-grid">
+    <!-- Cursos -->
+    <h2 class="section-title">Cursos Disponibles</h2>
+    <div class="courses-grid" id="cursos">
+
       <div class="course-card">
-        <h3>Curso de Python</h3>
-        <p>Avanza en tu aprendizaje de programación con ejercicios prácticos.</p>
+        <div class="course-icon">🐍</div>
+        <h3>Python Básico</h3>
+        <p>Aprende desde cero con ejemplos reales.</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+         <p class="progress-text">60% completado</p>
       </div>
+
       <div class="course-card">
-        <h3>Curso de Bases de Datos</h3>
-        <p>Aprende a estructurar y consultar bases de datos con SQL.</p>
+        <div class="course-icon">🛠️</div>
+        <h3>Desarrollo Web</h3>
+        <p>Domina HTML, CSS y JS en proyectos prácticos.</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 80%;"></div>
+        </div>
+        <p class="progress-text">80% completado</p>
       </div>
+
       <div class="course-card">
-        <h3>Curso de Desarrollo Web</h3>
-        <p>Combina HTML, CSS y JS para crear sitios increíbles.</p>
+        <div class="course-icon">📊</div>
+        <h3>Bases de Datos</h3>
+        <p>Aprende SQL y estructura tus datos como un pro.</p>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 30%;"></div>
+        </div>
+        <p class="progress-text">30% completado</p>
+
+      </div>
+    </div>
+
+    <!-- Estadísticas o progreso -->
+    <div class="stats">
+      <div class="stat-box">
+        <h3>3</h3>
+        <p>Cursos disponibles</p>
+      </div>
+      <div class="stat-box">
+        <h3>3</h3>
+        <p>Cursos en progreso</p>
+      </div>
+      <div class="stat-box">
+        <h3>0</h3>
+        <p>Cursos completados</p>
       </div>
     </div>
   </section>
