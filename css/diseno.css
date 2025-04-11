@@ -78,3 +78,13 @@
     border: none;
     cursor: pointer;
   }
+  .bienvenida {
+    margin-right: 15px;
+    font-weight: bold;
+    color: #ecf0f1;
+  }
+  
+  .error {
+    color: red; 
+    text-align: center;
+  }

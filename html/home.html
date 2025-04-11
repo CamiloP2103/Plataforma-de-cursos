@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Mi Plataforma de Cursos</title>
+  <link rel="stylesheet" href="../css/diseno.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Plataforma de Cursos</h1>
+    <nav>
+      <span class="bienvenida">Bienvenido, {{ usuario }}</span>
+      <a href="/logout">Cerrar sesión</a>
+    </nav>
+  </header>
+
+  <section class="main-content">
+    <h2 class="section-title">Tu Panel de Inicio</h2>
+    <p>¡Nos alegra tenerte de vuelta, {{ usuario }}! Explora tus cursos, revisa tu progreso y continúa aprendiendo 🚀.</p>
+
+    <div class="courses-grid">
+      <div class="course-card">
+        <h3>Curso de Python</h3>
+        <p>Avanza en tu aprendizaje de programación con ejercicios prácticos.</p>
+      </div>
+      <div class="course-card">
+        <h3>Curso de Bases de Datos</h3>
+        <p>Aprende a estructurar y consultar bases de datos con SQL.</p>
+      </div>
+      <div class="course-card">
+        <h3>Curso de Desarrollo Web</h3>
+        <p>Combina HTML, CSS y JS para crear sitios increíbles.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

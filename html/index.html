@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Plataforma de Cursos</title>
   <link rel="stylesheet" href="../css/diseno.css">
+
 </head>
 <body>
+
   <header>
     <h1>Mi Plataforma de Cursos</h1>
     <nav>
@@ -15,34 +18,48 @@
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
+
     <section class="main-content" id="cursos">
       <h2 class="section-title">Cursos Disponibles</h2>
       <div class="courses-grid">
+
         <div class="course-card">
           <h3>Curso de HTML</h3>
           <p>Aprende los fundamentos de HTML para crear sitios web.</p>
         </div>
+
         <div class="course-card">
           <h3>Curso de CSS</h3>
           <p>Diseña páginas web atractivas con hojas de estilo en cascada.</p>
         </div>
+
         <div class="course-card">
           <h3>Curso de JavaScript</h3>
           <p>Haz tus sitios web interactivos con JS moderno.</p>
         </div>
+
       </div>
     </section>
 
     <section class="login-form" id="login">
       <h2 id="title_signin" style=" color: #ffffff;">Iniciar Sesión</h2>
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% endif %}
+
+
       <form action="/login" method="POST">
         <input type="text" name="username" placeholder="Usuario o correo" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Entrar</button>
       </form>      
+
     </section>
+
   <footer id="contacto">
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>
