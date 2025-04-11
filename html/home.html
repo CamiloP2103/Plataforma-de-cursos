@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - Mi Plataforma de Cursos</title>
+  <title>Inicio - Plataforma de Cursos</title>
   <link rel="stylesheet" href="../css/diseno.css">
 </head>
 <body>
   <header>
-    <h1>Mi Plataforma de Cursos</h1>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="../img/logo-ucc.png" alt="Logo de la plataforma" style="height: 50px;">
+      <h1>Mi Plataforma de Cursos</h1>
+    </div>
     <nav>
       <span class="bienvenida">Bienvenido, {{ usuario }}</span>
       <a href="/logout">Cerrar sesión</a>
     </nav>
-  </header>
+  </header>  
 
   <section class="main-content">
     <h2 class="section-title">Tu Panel de Inicio</h2>
