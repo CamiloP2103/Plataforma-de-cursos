@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Profesor - Plataforma de Cursos</title>
+  <link rel="stylesheet" href="../css/diseno.css">
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+      <h1>Panel de Profesor</h1>
+    </div>
+    <nav>
+      <span class="bienvenida">👨‍🏫 Profesor: {{ usuario }}</span>
+      <a href="/logout">Cerrar sesión</a>
+    </nav>
+  </header>  
+
+  <section class="main-content">
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Bienvenido, Profesor {{ usuario }} 👨‍🏫</h2>
+      <p>Gestiona tus cursos y estudiantes desde este panel</p>
+      <a href="#gestion-cursos">Gestionar Cursos</a>
+    </div>
+
+    <!-- Gestión de cursos -->
+    <h2 class="section-title">Gestión de Cursos</h2>
+    <div class="courses-grid" id="gestion-cursos">
+      <div class="course-card">
+        <div class="course-icon">🐍</div>
+        <h3>Python Básico</h3>
+        <p>25 estudiantes inscritos</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Curso activo</p>
+        <a href="#" style="display: block; margin-top: 10px; text-align: center; background-color: #3498db; color: white; padding: 8px 0; border-radius: 5px; text-decoration: none;">Editar curso</a>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">🛠️</div>
+        <h3>Desarrollo Web</h3>
+        <p>18 estudiantes inscritos</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Curso activo</p>
+        <a href="#" style="display: block; margin-top: 10px; text-align: center; background-color: #3498db; color: white; padding: 8px 0; border-radius: 5px; text-decoration: none;">Editar curso</a>
+      </div>
+
+      <div class="course-card">
+        <div class="course-icon">📊</div>
+        <h3>Bases de Datos</h3>
+        <p>12 estudiantes inscritos</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Curso activo</p>
+        <a href="#" style="display: block; margin-top: 10px; text-align: center; background-color: #3498db; color: white; padding: 8px 0; border-radius: 5px; text-decoration: none;">Editar curso</a>
+      </div>
+      
+      <div class="course-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #f5f5f5; border: 2px dashed #ccc;">
+        <div class="course-icon" style="font-size: 50px;">➕</div>
+        <h3>Crear nuevo curso</h3>
+        <a href="#" style="display: block; margin-top: 10px; text-align: center; background-color: #2ecc71; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none;">Crear curso</a>
+      </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats">
+      <div class="stat-box">
+        <h3>3</h3>
+        <p>Cursos creados</p>
+      </div>
+      <div class="stat-box">
+        <h3>55</h3>
+        <p>Estudiantes totales</p>
+      </div>
+      <div class="stat-box">
+        <h3>12</h3>
+        <p>Tareas pendientes</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
