@@ -1,196 +1,196 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    width:100vw;
-    height: 100vh;
-    margin:0;
-  }
-  header {
-    background-color: #F6B511;
-    color: rgb(0, 0, 0);
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-  }
-  nav a:hover {
-    text-decoration: underline;
-  }
-  .main-content {
-    padding: 40px;
-  }
-  .section-title {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color:#ffff;
-  }
-  .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  .course-card {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px;
-  }
-  .course-card h3 {
-    margin-bottom: 10px;
-    font-size: 20px;
-  }
-  footer {
-    position: fixed;
-    bottom: 0;
-    width:100%;
-    background-color: #063680;   
-    color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-  }
-  .login-form {
-    background-color: #2F71B3;
-    padding: 30px;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 40px auto;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .login-form h2 {
-    margin-bottom: 20px;
-  }
-  .title_signin {
-    color: #f4f4f4;
-  }
-  .login-form input[type="text"], .login-form input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-  }
-  .login-form button {
-    padding: 10px 20px;
-    border-radius: 8px;
-    background-color: #063680;
-    color: white;
-    border: #032b66;
-    cursor: pointer;
-  }
-  .bienvenida {
-    margin-right: 15px;
-    font-weight: bold;
-    color: #ecf0f1;
-  }
-  
-  .error {
-    color: red; 
-    text-align: center;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  width:100vw;
+  height: 100vh;
+  margin:0;
+}
+header {
+  background-color: #F6B511;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+.main-content {
+  padding: 40px;
+}
+.section-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color:#ffff;
+}
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+.course-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+.course-card h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width:100%;
+  background-color: #063680;   
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+.login-form {
+  background-color: #2F71B3;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.login-form h2 {
+  margin-bottom: 20px;
+}
+.title_signin {
+  color: #f4f4f4;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+.login-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #063680;
+  color: white;
+  border: #032b66;
+  cursor: pointer;
+}
+.bienvenida {
+  margin-right: 15px;
+  font-weight: bold;
+  color: #ecf0f1;
+}
 
-  .progress-bar-container {
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 12px;
-    margin-top: 10px;
-  }
-  
-  .progress-bar {
-    height: 100%;
-    background-color: #27ae60;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  .progress-text {
-    font-size: 14px;
-    color: #2c3e50;
-    margin-top: 5px;
-  }
-  .hero {
-    background: url('https://plus.unsplash.com/premium_photo-1681681061891-39355003e416?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
-    color: white;
-    padding: 60px 20px;
-    text-align: center;
-    border-radius: 8px;
-    margin: 30px 0;
-  }
+.error {
+  color: red; 
+  text-align: center;
+}
 
-  .hero h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-  }
+.progress-bar-container {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 12px;
+  margin-top: 10px;
+}
 
-  .hero p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
+.progress-bar {
+  height: 100%;
+  background-color: #27ae60;
+  transition: width 0.3s ease-in-out;
+}
 
-  .hero a {
-    background-color: #27ae60;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
+.progress-text {
+  font-size: 14px;
+  color: #2c3e50;
+  margin-top: 5px;
+}
+.hero {
+  background: url('https://plus.unsplash.com/premium_photo-1681681061891-39355003e416?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 30px 0;
+}
 
-  .hero a:hover {
-    background-color: #1e8c4f;
-  }
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
 
-  .course-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
 
-  .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
+.hero a {
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
 
-  .course-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
+.hero a:hover {
+  background-color: #1e8c4f;
+}
 
-  .stats {
-    margin-top: 40px;
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-  }
+.course-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  .stat-box {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 30%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
 
-  .stat-box h3 {
-    font-size: 24px;
-    color: #2c3e50;
-  }
+.course-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
 
-  .stat-box p {
-    font-size: 14px;
-    color: #7f8c8d;
-  }  
-  .background {
-    height:100vh;
-    width:100%;
-    background: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
+.stats {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stat-box h3 {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.stat-box p {
+  font-size: 14px;
+  color: #7f8c8d;
+}  
+.background {
+  height:100vh;
+  width:100%;
+  background: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
