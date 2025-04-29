@@ -54,6 +54,11 @@ def rol_requerido(roles_permitidos):
 def home():
     return render_template('index.html')
 
+# Nueva ruta para la página de contacto
+@app.route('/contacto')
+def contacto():
+    return render_template('contacto.html')
+
 # Toma las credenciales que se le estan pidiendo al usuario en el index
 @app.route('/login', methods=['POST'])
 def login():
