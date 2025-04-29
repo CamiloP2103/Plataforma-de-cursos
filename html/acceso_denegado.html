@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso Denegado - Plataforma de Cursos</title>
+  <link rel="stylesheet" href="../css/diseno.css">
+  <style>
+    .acceso-denegado {
+      text-align: center;
+      padding: 50px 20px;
+      max-width: 600px;
+      margin: 100px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .acceso-denegado h2 {
+      color: #e74c3c;
+      margin-bottom: 20px;
+    }
+    
+    .acceso-denegado p {
+      margin-bottom: 30px;
+      color: #555;
+    }
+    
+    .btn-volver {
+      background-color: #2F71B3;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-volver:hover {
+      background-color: #1d5a96;
+    }
+    
+    .error-icon {
+      font-size: 60px;
+      color: #e74c3c;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+      <h1>Mi Plataforma de Cursos</h1>
+    </div>
+  </header>
+
+  <div class="acceso-denegado">
+    <div class="error-icon">🚫</div>
+    <h2>Acceso Denegado</h2>
+    <p>Lo sentimos, no tienes permiso para acceder a esta sección de la plataforma.</p>
+    <p>Por favor, vuelve a tu panel principal o contacta al administrador si crees que esto es un error.</p>
+    
+    <a href="/home" class="btn-volver">Volver al inicio</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html> 
