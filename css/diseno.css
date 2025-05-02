@@ -188,9 +188,10 @@ footer {
   color: #7f8c8d;
 }  
 .background {
-  height:100vh;
-  width:100%;
-  background: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU');
-  background-size: 100% 100%;
+  min-height: 100vh;
+  background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU');
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: top center;
+  padding: 40px 20px;
 }

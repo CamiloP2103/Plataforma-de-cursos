@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder='html', static_folder='css')
 app.secret_key = 'clave_secreta'
 
 # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://UserPlataforma:Ucatolica1@3.145.105.164:3306/plataformacursos'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://UserPlataforma:Ucatolica1@18.118.207.43/plataformacursos'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -18,6 +18,7 @@ class Usuarios(db.Model):
     Nombre = db.Column(db.String(256))
     Contraseña = db.Column(db.String(256))
     Tipo_usr = db.Column(db.Integer)
+    Estado = db.Column(db.Boolean, default=True)
 
 # Usuarios en memoria (usar solo como respaldo si la BD falla)
 USUARIOS_BACKUP = {
@@ -53,6 +54,37 @@ def rol_requerido(roles_permitidos):
 @app.route('/')
 def home():
     return render_template('index.html')
+
+@app.route("/sign-up", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        # Recuperar los datos del formulario
+        nombre = request.form.get('nombre')
+        fecha_nacimiento = request.form.get('fecha_nacimiento')  # Recuperar la fecha de nacimiento
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+
+        # Verificar que las contraseñas coincidan
+        if password != confirm_password:
+            return render_template("sign-up.html", error="Las contraseñas no coinciden")
+
+        try:
+            # Insertar los datos en la base de datos
+            nuevo_usuario = Usuarios(
+                Nombre=nombre, 
+                Contraseña=password, 
+                Tipo_usr=2,  # Tipo_usr=2 para estudiantes
+                Estado=True   # Estado=True (1) para indicar que está activo
+            )
+            db.session.add(nuevo_usuario)
+            db.session.commit()
+
+            return redirect('/')  # Redirigir al login después de registrarse
+        except Exception as e:
+            print(f"Error al registrar el usuario: {e}")
+            return render_template("sign-up.html", error="Hubo un error al registrar el usuario.")
+    
+    return render_template("sign-up.html")
 
 # Nueva ruta para la página de contacto
 @app.route('/contacto')
