@@ -7,8 +7,13 @@
 </head>
 <body>
   <header>
-    <h1>Crear nuevo curso</h1>
+      <div style="display: flex; align-items: center; gap: 15px;">
+		<img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+		<h1>Crear nuevo curso. Bienvenido, {{ usuario }}</h1>
+	 </div>
+	 <nav>
     <a href="/profesor/dashboard">Volver al dashboard</a>
+	</nav>
   </header>
 
   <main>
@@ -26,5 +31,9 @@
       <button type="submit">Crear Curso</button>
     </form>
   </main>
+  <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>
+  
 </body>
 </html>
