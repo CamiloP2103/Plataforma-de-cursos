@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Curso</title>
+  <link rel="stylesheet" href="../css/diseno.css">
+</head>
+<body>
+  <header>
+    <h1>Crear nuevo curso</h1>
+    <a href="/profesor/dashboard">Volver al dashboard</a>
+  </header>
+
+  <main>
+    {% if error %}
+      <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+      <label for="nombre_curso">Nombre del curso:</label><br>
+      <input type="text" id="nombre_curso" name="nombre_curso" required><br><br>
+
+      <label for="descripcion">Descripción:</label><br>
+      <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
+
+      <button type="submit">Crear Curso</button>
+    </form>
+  </main>
+</body>
+</html>

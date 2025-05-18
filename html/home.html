@@ -21,47 +21,32 @@
   <section class="main-content">
     <!-- Hero -->
     <div class="hero">
-      <h2>Hola {{ usuario }} 👨‍💻</h2>
+      <h2>Hola Estudiante, {{ usuario }} 👨‍💻</h2>
       <p>¡Sigue aprendiendo y alcanza tus metas con nosotros!</p>
-      <a href="#cursos">Explorar Cursos</a>
+      <!-- <a href="#cursos">Explorar Cursos</a> --> 
+	  <a href="/cursos" class="btn">Explorar Cursos Disponibles</a>
     </div>
 
     <!-- Cursos -->
-    <h2 class="section-title">Cursos Disponibles</h2>
-    <div class="courses-grid" id="cursos">
-
+<h2 class="section-title">Cursos Disponibles</h2>
+<div class="courses-grid" id="cursos">
+  {% if cursos %}
+    {% for curso in cursos %}
       <div class="course-card">
-        <div class="course-icon">🐍</div>
-        <h3>Python Básico</h3>
-        <p>Aprende desde cero con ejemplos reales.</p>
+        <div class="course-icon"></div>
+        <h3>{{ curso.nombre_curso }}</h3>
+        <p>{{ curso.descripcion }}</p>
         <div class="progress-bar-container">
-            <div class="progress-bar" style="width: 60%;"></div>
+            <div class="progress-bar" style="width: 0%;"></div>
         </div>
-         <p class="progress-text">60% completado</p>
+        <p class="progress-text">0% completado</p>
       </div>
+    {% endfor %}
+  {% else %}
+    <p>No estás inscrito en ningún curso actualmente.</p>
+  {% endif %}
+</div>
 
-      <div class="course-card">
-        <div class="course-icon">🛠️</div>
-        <h3>Desarrollo Web</h3>
-        <p>Domina HTML, CSS y JS en proyectos prácticos.</p>
-        <div class="progress-bar-container">
-            <div class="progress-bar" style="width: 80%;"></div>
-        </div>
-        <p class="progress-text">80% completado</p>
-      </div>
-
-      <div class="course-card">
-        <div class="course-icon">📊</div>
-        <h3>Bases de Datos</h3>
-        <p>Aprende SQL y estructura tus datos como un pro.</p>
-
-        <div class="progress-bar-container">
-            <div class="progress-bar" style="width: 30%;"></div>
-        </div>
-        <p class="progress-text">30% completado</p>
-
-      </div>
-    </div>
 
     <!-- Estadísticas o progreso -->
     <div class="stats">

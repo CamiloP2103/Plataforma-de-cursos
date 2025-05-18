@@ -2,41 +2,37 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Profesor - Plataforma de Cursos</title>
+  <title>Cursos Disponibles</title>
   <link rel="stylesheet" href="../css/diseno.css">
 </head>
 <body>
-   <header>
-    <div style="display: flex; align-items: center; gap: 15px;">
+  <header>
+	  <div style="display: flex; align-items: center; gap: 15px;">
       <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
-      <h1>Panel de Profesor. Bienvenido, {{ usuario }}</h1>
-    </div>
-    <nav>
-      <a href="/profesor/crear_curso">➕ Crear Curso</a>
-      <a href="/logout">Cerrar sesión</a>
-    </nav>
-  </header>   
-
-<!-- Gestión de cursos -->
+      <h1>Cursos Disponibles. 👋 Bienvenido, {{ usuario }}</h1>
+	  </div>
+	  <nav>
+	  <a href="/home">Volver a mi página</a> | <a href="/logout">Cerrar sesión</a>
+      </nav>
+  </header>
 
   <main class="main-content">
-    <h2>📚 Cursos que impartes </h2>
-	<br>
-    <div class="courses-grid" id="gestion-cursos">
+    <div class="courses-grid">
       {% if cursos %}
         {% for curso in cursos %}
           <div class="course-card">
             <h3>{{ curso.nombre_curso }}</h3>
             <p>{{ curso.descripcion }}</p>
+            <a href="/inscribirse/{{ curso.id_curso }}" class="btn">Inscribirse</a>
           </div>
         {% endfor %}
       {% else %}
-        <p>No has creado ningún curso aún.</p>
+        <p>No hay cursos disponibles para inscribirse.</p>
       {% endif %}
     </div>
   </main>
-   <footer>
+    <footer>
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
-  </footer> 
+  </footer>
 </body>
 </html>
