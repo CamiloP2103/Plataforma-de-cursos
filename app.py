@@ -1,7 +1,7 @@
 from flask import Flask, request, session, redirect, render_template, url_for
 from config import Config
 from functools import wraps
-from models import db
+from models import db, Cursos, Usuarios
 from auth_service import AuthService
 
 app = Flask(__name__, template_folder='html', static_folder='css')
@@ -83,12 +83,37 @@ def logout():
 @rol_requerido(['estudiante', 'admin'])
 
 def homepage():
-    return render_template('home.html', usuario=session['usuario'])
-    print(session.pop('rol', None))
+    usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+    cursos = usuario.cursos_inscritos if usuario else []
+    return render_template('home.html', usuario=usuario.Nombre, cursos=cursos)
+    
+
+@app.route('/cursos')
+@rol_requerido(['estudiante'])
+def ver_cursos():
+    usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+    cursos_disponibles = Cursos.query.filter(~Cursos.estudiantes.any(id_usr=usuario.id_usr)).all()
+    return render_template('cursos_disponibles.html', cursos=cursos_disponibles, usuario=usuario.Nombre)
+
+@app.route('/inscribirse/<int:curso_id>')
+@rol_requerido(['estudiante'])
+def inscribirse(curso_id):
+    usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+    curso = Cursos.query.get(curso_id)
+
+    if curso and usuario not in curso.estudiantes:
+        usuario.cursos_inscritos.append(curso)
+        db.session.commit()
+    
+    return redirect('/home')
+    
+
 @app.route('/profesor/dashboard')
 @rol_requerido(['profesor', 'admin'])
 def profesor_dashboard():
-    return render_template('profesor_dashboard.html', usuario=session['usuario'])
+    profesor = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+    cursos = Cursos.query.filter_by(profesor_id=profesor.id_usr).all() if profesor else []
+    return render_template('profesor_dashboard.html', usuario=profesor.Nombre, cursos=cursos)
 
 @app.route('/admin/dashboard')
 @rol_requerido(['admin'])
@@ -102,11 +127,26 @@ def crear_curso():
     if request.method == 'POST':
         nombre_curso = request.form.get('nombre_curso')
         descripcion = request.form.get('descripcion')
-        nuevo_curso = Cursos(nombre_curso=nombre_curso, descripcion=descripcion)
+
+        # Obtener el usuario actual (profesor)
+        profesor = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+
+        if not profesor:
+            return render_template("crear_curso.html", error="No se encontró al profesor.")
+
+        # Crear y asociar el curso
+        nuevo_curso = Cursos(
+            nombre_curso=nombre_curso,
+            descripcion=descripcion,
+            profesor_id=profesor.id_usr
+        )
         db.session.add(nuevo_curso)
         db.session.commit()
+
         return redirect('/profesor/dashboard')
+
     return render_template('crear_curso.html')
+
     
 
 if __name__ == '__main__':
