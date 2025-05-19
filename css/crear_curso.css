@@ -1,0 +1,146 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;  /* Esto fija la imagen para que no se mueva */
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+  }
+
+  header {
+    background-color: #F6B511;
+    color: #000000;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+    box-shadow: 0 4px 8px #00000033;
+    font-weight: 600;
+  }
+  
+  nav a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #032b66;
+    text-decoration: underline;
+  }
+  
+  /* Main formulario */
+  main {
+    background: linear-gradient(145deg, #ffffffcc, #e6e6e6cc);
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 80px auto 60px;
+    padding: 40px 50px;
+    box-shadow:
+      0 8px 20px #00000033,
+      inset 0 0 15px #ffffff99;
+    position: relative;
+    z-index: 5;
+    animation: slideIn 1s ease forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  form label {
+    display: block;
+    margin-top: 20px;
+    font-weight: 700;
+    color: #333333dd;
+    letter-spacing: 0.03em;
+  }
+  
+  form input[type="text"],
+  form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+  }
+  
+  form input[type="text"]:focus,
+  form textarea:focus {
+    border-color: #F6B511;
+    outline: none;
+    box-shadow: 0 0 8px #f6b511aa;
+  }
+  
+  form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  form button {
+    margin-top: 30px;
+    background-color: #063680;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px #032b6611;
+    letter-spacing: 0.05em;
+  }
+  
+  form button:hover {
+    background-color: #032b66;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px #032b6699;
+  }
+  
+  /* Mensaje de error */
+  main p[style*="color: red"] {
+    text-align: center;
+    font-weight: 700;
+    color: #d32f2f;
+    margin-bottom: 10px;
+  }
+  
+  footer {
+    background-color: #063680;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    box-shadow: 0 -3px 10px #00000044;
+    z-index: 10;
+    position: relative;
+  }
+  
