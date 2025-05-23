@@ -1,14 +1,12 @@
--Colocar Boton de volver al incio (No entendi en que parte va)
 
 -Validar que se cumpla 100% los principios de SOLID
-
--Colocar un boton para que el profesor pueda subir archivos al curso y asi enlazarlo con el api para conevrtir 
-  pdf a podcast, ademas asegurarse que solamente se pueda subir archivos pdf o word.
 
 -Asegurarse de poner la misma imagen de fondo en la interfaz de cursos tanto profesor como de estudiante.
 
 -En la interfaz de incio de sesion, agregar algunas imagenes relacionadas a cada curso que se muestre dentro del coursecard
 
--Al momento de crear un nuevo curso, se le debe pedir al profesor que suba una imagen que se usara como "Portada" y que 
-  se pueda subir a la db la cual se debera mostrar como "miniatura" despues de la descripcion del curso 
-  dentro del coursecard.
+ajustar el diseño y que se vea homogéneo en todas las pantallas 
+Validar que se cumplan todas las practicas SOLID al 100% hay algunas funciones, pero como agregue más código y funciones hay que chequearlo de nuevo 
+agregar CI / CD en para despliegue continuo e integración continua 
+hay dos pruebas unitarias creadas, hay que crear 3 mas
+todos los cambios ya fueron publicados en github y estan desplegados en el servidor
