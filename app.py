@@ -1,12 +1,29 @@
-from flask import Flask, request, session, redirect, render_template, url_for
+from flask import Flask, request, session, redirect, render_template, url_for, flash
 from config import Config
 from functools import wraps
-from models import db, Cursos, Usuarios
+from models import db, Cursos, Usuarios,ArchivosCurso 
 from auth_service import AuthService
+from werkzeug.utils import secure_filename
+from werkzeug.exceptions import RequestEntityTooLarge
+from podcast_service import generar_podcast_desde_pdf
+import os
 
-app = Flask(__name__, template_folder='html', static_folder='css')
+app = Flask(__name__, template_folder='html', static_folder='static')
+
 app.config.from_object(Config)
 db.init_app(app)
+
+# Carpeta para guardar los archivos PDF
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'uploads')
+ALLOWED_EXTENSIONS = {'pdf'}
+MAX_FILE_SIZE_MB = 25
+app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE_MB * 1024 * 1024  # 5 MB
+
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 # Usuarios en memoria (usar solo como respaldo si la BD falla)
 USUARIOS_BACKUP = {
     'admin': {'password': '1234', 'rol': 'admin'},
@@ -106,7 +123,44 @@ def inscribirse(curso_id):
         db.session.commit()
     
     return redirect('/home')
-    
+
+@app.route('/generar_podcast/<int:id>', methods=['GET'])
+@rol_requerido(['estudiante'])
+def generar_podcast(id):
+    archivo = ArchivosCurso.query.get_or_404(id)
+    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], archivo.ruta_archivo)
+
+    if not os.path.exists(pdf_path):
+        flash("El archivo no existe.")
+        return redirect(request.referrer or '/home')
+
+    # Si ya tiene un podcast generado, lo usamos directamente
+    if archivo.ruta_podcast:
+        return render_template('podcast_generado.html', audio_url='/' + archivo.ruta_podcast, archivo=archivo, transcripcion=archivo.transcripcion)
+
+    # Llamar a la función para generar el podcast
+    resultado = generar_podcast_desde_pdf(pdf_path)
+
+   
+    if isinstance(resultado, tuple) and "static/podcasts/" in resultado[0].replace("\\", "/"):
+        ruta_podcast, transcripcion = resultado
+
+          
+        # ✅ GUARDAR EN BASE DE DATOS
+        ruta_podcast = resultado[0].replace("\\", "/")
+        archivo.ruta_podcast = ruta_podcast
+        archivo.transcripcion = transcripcion
+        db.session.commit()
+
+        print(archivo.ruta_podcast)
+        print(archivo.transcripcion)
+
+        return render_template('podcast_generado.html', audio_url='/' + ruta_podcast, archivo=archivo, transcripcion=transcripcion)
+
+    else:
+        flash(f"Error al generar el podcast: {resultado}")
+        return redirect(request.referrer or '/home')
+
 
 @app.route('/profesor/dashboard')
 @rol_requerido(['profesor', 'admin'])
@@ -146,8 +200,77 @@ def crear_curso():
         return redirect('/profesor/dashboard')
 
     return render_template('crear_curso.html')
+    
+# Metodo Editar curso por profesor
+
+@app.route('/profesor/editar_curso/<int:curso_id>', methods=['GET', 'POST'])
+@rol_requerido(['profesor'])
+def editar_curso(curso_id):
+    curso = Cursos.query.get_or_404(curso_id)
+    profesor = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+
+    if curso.profesor_id != profesor.id_usr:
+        return render_template('acceso_denegado.html')
+
+    if request.method == 'POST':
+        curso.nombre_curso = request.form.get('nombre_curso')
+        curso.descripcion = request.form.get('descripcion')
+
+        archivos = request.files.getlist('pdfs')
+        for archivo in archivos:
+            if archivo and archivo.filename.endswith('.pdf'):
+                filename = secure_filename(archivo.filename)
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                archivo.save(filepath)
+
+                nuevo_archivo = ArchivosCurso(
+                    nombre_archivo=filename,
+                    ruta_archivo=filename,
+                    curso_id=curso.id_curso
+                )
+                db.session.add(nuevo_archivo)
+        
+        db.session.commit()
+        return redirect('/profesor/dashboard')
+
+    return render_template('editar_curso.html', curso=curso)
+
+ #valida el tamaño de archivo y que sea pdf 
+@app.errorhandler(RequestEntityTooLarge)
+def handle_file_too_large(e):
+    flash("El archivo excede el tamaño máximo permitido de 25 MB.")
+    # Puedes usar request.referrer para volver a la misma página
+    return redirect(request.referrer or '/')
 
     
+#Eliminar cursos profesor 
+
+@app.route('/profesor/eliminar_curso/<int:curso_id>', methods=['POST'])
+@rol_requerido(['profesor'])
+def eliminar_curso(curso_id):
+    curso = Cursos.query.get_or_404(curso_id)
+    profesor = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+
+    if curso.profesor_id != profesor.id_usr:
+        return render_template('acceso_denegado.html')
+
+    db.session.delete(curso)
+    db.session.commit()
+    return redirect('/profesor/dashboard')
+    
+# consultar contenido curso 
+
+@app.route('/curso/<int:curso_id>')
+@rol_requerido(['estudiante'])
+def ver_curso(curso_id):
+    usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
+    curso = Cursos.query.get_or_404(curso_id)
+
+    # Validar que el estudiante esté inscrito en el curso
+    if usuario not in curso.estudiantes:
+        return render_template('acceso_denegado.html')
+
+    return render_template('curso_estudiante.html', usuario=usuario.Nombre, curso=curso)    
 
 if __name__ == '__main__':
     with app.app_context():

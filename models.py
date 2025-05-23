@@ -26,7 +26,15 @@ class Cursos(db.Model):
     descripcion = db.Column(db.String(512))
     fecha_creacion = db.Column(db.DateTime, default=db.func.current_timestamp())
     profesor_id = db.Column(db.Integer, db.ForeignKey('USUARIOS.id_usr'))
-
     profesor = db.relationship('Usuarios', backref='cursos_impartidos')
 
+class ArchivosCurso(db.Model):
+    __tablename__ = 'ARCHIVOS_CURSO'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_archivo = db.Column(db.String(256))
+    ruta_archivo = db.Column(db.String(512))
+    ruta_podcast = db.Column(db.String(512))
+    transcripcion = db.Column(db.Text)  # NUEVO
+    curso_id = db.Column(db.Integer, db.ForeignKey('CURSOS.id_curso'))
+    curso = db.relationship('Cursos', backref='archivos')
 
