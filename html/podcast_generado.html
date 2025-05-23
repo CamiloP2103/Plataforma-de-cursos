@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Podcast generado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+        </div>
+        <nav>   
+          <a href="{{ url_for('ver_curso', curso_id=archivo.curso_id) }}">⬅ Volver al curso</a>
+        </nav>
+    </header> 
+    <main>    
+    <h1>🎧 Podcast generado para: {{ archivo.nombre_archivo }}</h1>
+    <audio controls>
+        <source src="{{ audio_url }}" type="audio/mpeg">
+        Tu navegador no soporta audio HTML5.
+    </audio>
+    
+
+    {% if transcripcion %}
+    <h2>📝 Transcripción</h2>
+    <div style="white-space: pre-wrap;">
+        {{ transcripcion }}
+    </div>
+    {% endif %}
+
+    <br><br>
+</main>
+<footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>
+  
+</body>
+</html>
+
+

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio - Plataforma de Cursos</title>
-  <link rel="stylesheet" href="../css/diseno.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diseno.css') }}">
 </head>
 <body>
   <header>
@@ -34,13 +34,15 @@
     {% for curso in cursos %}
       <div class="course-card">
         <div class="course-icon"></div>
-        <h3>{{ curso.nombre_curso }}</h3>
+		<h3><a href="{{ url_for('ver_curso', curso_id=curso.id_curso) }}">{{ curso.nombre_curso }}</a></h3>
         <p>{{ curso.descripcion }}</p>
         <div class="progress-bar-container">
             <div class="progress-bar" style="width: 0%;"></div>
         </div>
         <p class="progress-text">0% completado</p>
       </div>
+
+	  
     {% endfor %}
   {% else %}
     <div class="center-message-container">
@@ -48,6 +50,7 @@
    </div>  
   {% endif %}
 </div>
+
 
 
     <!-- Estadísticas o progreso -->

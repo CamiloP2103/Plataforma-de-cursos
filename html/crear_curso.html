@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Crear Curso</title>
-  <link rel="stylesheet" href="../css/crear_curso.css">
+ <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
 </head>
 <body>
   <header>
       <div style="display: flex; align-items: center; gap: 15px;">
 		<img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
-		<h1>Crear nuevo curso. Bienvenido, {{ usuario }}</h1>
+		<h1>Crear nuevo curso.</h1>
 	 </div>
 	 <nav>
     <a href="/profesor/dashboard">Volver al dashboard</a>

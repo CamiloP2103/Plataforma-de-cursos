@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informacion sobre el curso</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diseno.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
+</head>
+<body>
+  <header>
+     <div style="display: flex; align-items: center; gap: 15px;">
+		<img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+		<h1>Informacion sobre el curso</h1>
+		<p>{{ curso.nombre_curso }}</p>
+	</div>
+	 <nav>
+    <a href="/home">← Volver a mis cursos</a>
+  	</nav>
+  </header>
+
+  <main>
+    <h2>Material del curso</h2>
+	<br>
+	<h>{{ curso.nombre_curso }}</h>
+	<br>
+	<br>
+	<p1>{{ curso.descripcion }}</p1>
+    {% if curso.archivos %}
+      <ul>
+        {% for archivo in curso.archivos %}
+          <li>
+            <a href="{{ url_for('static', filename='uploads/' + archivo.ruta_archivo) }}" target="_blank">{{ archivo.nombre_archivo }}</a>
+			<a href="{{ url_for('generar_podcast', id=archivo.id) }}">🎧 Generar y escuchar podcast</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+	  <div class="center-message-container">	
+ 	   <h3 class="no-courses-message">No hay archivos PDF disponibles para este curso.</h3>
+	   </div> 
+    {% endif %}
+  </main>
+
+  </body>
+    <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer> 
+</html>

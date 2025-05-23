@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Curso</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
+</head>
+<body>
+  <header>
+      <div style="display: flex; align-items: center; gap: 15px;">
+		<img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
+		<<h1>Editar Curso</h1>
+	 </div>
+	 <nav>
+    <a href="/profesor/dashboard">Volver al dashboard</a>
+	</nav>
+  </header>
+<main>	 
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="error-messages">
+      {% for message in messages %}
+        <li style="color: red;">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% if error %}
+  <p style="color: red;">{{ error }}</p>
+{% endif %}
+  <h1>Editar Curso</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <label>Nombre del curso:</label><br>
+    <input type="text" name="nombre_curso" value="{{ curso.nombre_curso }}" required><br><br>
+
+    <label>Descripción:</label><br>
+    <textarea name="descripcion" required>{{ curso.descripcion }}</textarea><br><br>
+
+    <label>Archivo PDF (opcional):</label><br>
+    <input type="file" name="pdfs" multiple>
+
+{% if curso.archivos %}
+  <h4>Material existente:</h4>
+  <ul>
+    {% for archivo in curso.archivos %}
+      <li>
+        <a href="{{ url_for('static', filename='uploads/' + archivo.ruta_archivo) }}" target="_blank">{{ archivo.nombre_archivo }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+    <button type="submit">Guardar cambios</button>
+  </form>
+</main>  
+   <footer>
+    <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
+  </footer>   
+</body>
+</html>
