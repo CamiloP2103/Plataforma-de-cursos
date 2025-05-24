@@ -8,7 +8,7 @@ from werkzeug.exceptions import RequestEntityTooLarge
 from podcast_service import generar_podcast_desde_pdf
 import os
 
-app = Flask(__name__, template_folder='html', static_folder='static')
+app = Flask(__name__, template_folder='html', static_folder='css')
 
 app.config.from_object(Config)
 db.init_app(app)
