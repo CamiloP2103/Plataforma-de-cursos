@@ -105,11 +105,20 @@ def logout():
 
 @app.route('/home')
 @rol_requerido(['estudiante', 'admin'])
-
 def homepage():
     usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
     cursos = usuario.cursos_inscritos if usuario else []
-    return render_template('home.html', usuario=usuario.Nombre, cursos=cursos)
+    cursos_disponibles = Cursos.query.count()
+    cursos_en_progreso = len(cursos)
+    cursos_completados = 0  
+    return render_template(
+        'home.html',
+        usuario=usuario.Nombre,
+        cursos=cursos,
+        cursos_disponibles=cursos_disponibles,
+        cursos_en_progreso=cursos_en_progreso,
+        cursos_completados=cursos_completados
+    )
 
 @app.route('/cursos')
 @rol_requerido(['estudiante'])

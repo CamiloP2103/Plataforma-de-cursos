@@ -1,0 +1,68 @@
+/* --- HERO SECTION --- */
+.hero {
+  background: url('https://plus.unsplash.com/premium_photo-1681681061891-39355003e416?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 8px;
+  margin: 30px 0;
+}
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.hero a {
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+.hero a:hover {
+  background-color: #1e8c4f;
+}
+.hero h2,
+.hero p {
+  text-shadow: 3px 4px 18px rgba(0,0,0,0.8), 0 2px 8px rgba(6,54,128,0.25);
+}
+
+/* --- STATS SECTION --- */
+.stats {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+.stat-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  outline: none;
+}
+.stat-box:focus,
+.stat-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px #06368044;
+  background: #f6faff;
+}
+.stat-box h3 {
+  font-size: 24px;
+  color: #2c3e50;
+}
+.stat-box p {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+.stat-disponibles h3 { color: #063680; }
+.stat-progreso h3 { color: #F6B511; }
+.stat-completados h3 { color: #27ae60; }

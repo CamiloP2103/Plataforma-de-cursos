@@ -1,0 +1,109 @@
+/* --- LOGIN & SIGN-UP FORM --- */
+.login-form {
+  background-color: #2F71B3;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.login-form h2 {
+  margin-bottom: 20px;
+}
+.title_signin {
+  color: #f4f4f4;
+}
+.login-form input[type="text"], .login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+.login-form button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #063680;
+  color: white;
+  border: #032b66;
+  cursor: pointer;
+}
+.bienvenida {
+  margin-right: 15px;
+  font-weight: bold;
+  color: #ecf0f1;
+}
+.error {
+  color: red;
+  text-align: center;
+}
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+#password {
+  width: 100%;
+  padding-right: 40px;
+}
+#togglePassword, #toggleConfirmPassword{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+#eyeIcon, #eyeIconConfirm {
+  fill: #555;
+  transition: fill 0.3s ease;
+}
+#togglePassword:hover #eyeIcon, #toggleConfirmPassword:hover #eyeIconConfirm {
+  fill: #000;
+}
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* Estilo para el label del campo fecha */
+.label-fecha {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  color: #063680;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Estilo para el input de fecha */
+.input-fecha {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f9fafc;
+  color: #333;
+  margin-bottom: 12px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px #06368011;
+}
+
+.input-fecha:focus {
+  border-color: #F6B511;
+  outline: none;
+  box-shadow: 0 0 8px #f6b51155;
+}
+
+/* Personalización del icono del calendario en navegadores modernos */
+.input-fecha::-webkit-calendar-picker-indicator {
+  filter: invert(34%) sepia(99%) saturate(747%) hue-rotate(178deg) brightness(95%) contrast(92%);
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+.input-fecha:focus::-webkit-calendar-picker-indicator {
+  filter: invert(60%) sepia(80%) saturate(2000%) hue-rotate(10deg) brightness(110%) contrast(110%);
+}

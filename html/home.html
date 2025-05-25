@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio - Plataforma de Cursos</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='../css/diseno.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='../css/home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='../css/coursecard.css') }}">
 </head>
-<body>
+<body class="home-dark-bg" style="background-image: url('https://media.licdn.com/dms/image/v2/C561BAQGfHEosVmpVvQ/company-background_10000/company-background_10000/0/1585298876542/universidadcatlicadecolombia_cover?e=2147483647&v=beta&t=F5Mivua6iosMztXLLliDxOOOZsjqH8ASsP6hfYL1GbU'); background-size: cover; background-repeat: no-repeat; background-position: center top; background-attachment: fixed;">
   <header>
     <div style="display: flex; align-items: center; gap: 15px;">
       <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
@@ -55,16 +57,16 @@
 
     <!-- Estadísticas o progreso -->
     <div class="stats">
-      <div class="stat-box">
-        <h3>3</h3>
+      <div class="stat-box stat-disponibles" tabindex="0" onclick="scrollToSection('cursos')" title="Ver cursos disponibles">
+        <h3>{{ cursos_disponibles }}</h3>
         <p>Cursos disponibles</p>
       </div>
-      <div class="stat-box">
-        <h3>3</h3>
+      <div class="stat-box stat-progreso" tabindex="0" onclick="scrollToSection('cursos')" title="Ver cursos en progreso">
+        <h3>{{ cursos_en_progreso }}</h3>
         <p>Cursos en progreso</p>
       </div>
-      <div class="stat-box">
-        <h3>0</h3>
+      <div class="stat-box stat-completados" tabindex="0" onclick="scrollToSection('cursos')" title="Ver cursos completados">
+        <h3>{{ cursos_completados }}</h3>
         <p>Cursos completados</p>
       </div>
     </div>
@@ -73,5 +75,11 @@
   <footer>
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
   </footer>
+  <script>
+function scrollToSection(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior: "smooth"});
+}
+</script>
 </body>
 </html>

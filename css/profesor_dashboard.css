@@ -79,8 +79,11 @@ body {
   .courses-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espaciado entre las tarjetas */
-    justify-content: center; /* Centra las tarjetas */
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+    /* Elimina cualquier ancho fijo que cause overflow */
+    margin-bottom: 80px; /* espacio para el footer */
 }
   
   .course-card {
@@ -92,11 +95,26 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    flex: 1 1 300px;         /* Permite crecer, encoger, base 300px */
+    max-width: 320px;        /* Máximo ancho por tarjeta */
+    min-width: 260px;        /* Mínimo ancho para responsividad */
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
   
   .course-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+  .course-card h3 {
+    margin-bottom: 16px; /* Espacio extra entre el título y la descripción */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
   }
   
 
@@ -112,4 +130,3 @@ body {
     z-index: 1;
     font-size: 14px;
   }
-  

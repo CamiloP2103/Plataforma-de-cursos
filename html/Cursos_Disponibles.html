@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Cursos Disponibles</title>
   <link rel="stylesheet" href="../css/diseno.css">
-  <link rel="stylesheet" href="{{ url_for('static', filename='../css/course_cardcss') }}">
+  <link rel="stylesheet" href="../css/coursecard.css"><!-- Añadido para el diseño de las course-card -->
 </head>
-<body>
+<body style="background-image: url('https://plus.unsplash.com/premium_photo-1681681061891-39355003e416?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-repeat: no-repeat; background-position: center top; background-attachment: fixed;">
   <header>
 	  <div style="display: flex; align-items: center; gap: 15px;">
       <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
@@ -16,7 +16,7 @@
 	  <a href="/home">Volver a mi página</a> | <a href="/logout">Cerrar sesión</a>
       </nav>
   </header>
-
+  
   <main class="main-content">
     <div class="courses-grid">
       {% if cursos %}
