@@ -149,19 +149,21 @@ def generar_podcast(id):
         flash("El archivo no existe.")
         return redirect(request.referrer or '/home')
     
+        # Si ya tiene podcast generado, lo usamos directamente (no se regenera)
+    if archivo.ruta_podcast:
+        return render_template(
+            'podcast_generado.html',
+            audio_url='/' + archivo.ruta_podcast,
+            archivo=archivo,
+            transcripcion=archivo.transcripcion
+        )
+
     if request.method == 'POST':
         pregunta = request.form.get("pregunta", "")
         idioma = request.form.get("idioma", "")
         resultado = generar_podcast_desde_pdf(pdf_path, pregunta=pregunta, idioma=idioma)
 
-    # Si ya tiene un podcast generado, lo usamos directamente
-    if archivo.ruta_podcast:
-        return render_template('podcast_generado.html', audio_url='/' + archivo.ruta_podcast, archivo=archivo, transcripcion=archivo.transcripcion)
-
-    # Llamar a la función para generar el podcast
-    resultado = generar_podcast_desde_pdf(pdf_path)
-
-   
+      
     if isinstance(resultado, tuple) and "static/podcasts/" in resultado[0].replace("\\", "/"):
         ruta_podcast, transcripcion = resultado
 
@@ -171,9 +173,6 @@ def generar_podcast(id):
         archivo.ruta_podcast = ruta_podcast
         archivo.transcripcion = transcripcion
         db.session.commit()
-
-        print(archivo.ruta_podcast)
-        print(archivo.transcripcion)
 
         return render_template('podcast_generado.html', audio_url='/' + ruta_podcast, archivo=archivo, transcripcion=transcripcion)
 
