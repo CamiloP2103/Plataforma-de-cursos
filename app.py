@@ -6,9 +6,10 @@ from auth_service import AuthService
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import RequestEntityTooLarge
 from podcast_service import generar_podcast_desde_pdf
+import random
 import os
 
-app = Flask(__name__, template_folder='html', static_folder='static')
+app = Flask(__name__, template_folder='html', static_folder='css')
 
 app.config.from_object(Config)
 db.init_app(app)
@@ -46,8 +47,14 @@ def rol_requerido(roles_permitidos):
 
 # Encuentra el index principal al iniciar la pagina
 @app.route('/')
+@app.route('/')
 def home():
-    return render_template('index.html')
+    todos_cursos = obtener_todos_los_cursos()
+    cursos_muestra = random.sample(todos_cursos, min(3, len(todos_cursos))) if todos_cursos else []
+    return render_template('index.html', cursos=cursos_muestra)
+
+def obtener_todos_los_cursos():
+    return Cursos.query.all()  # Trae todos los cursos de la tabla
 
 @app.route("/sign-up", methods=["GET", "POST"])
 def signup():
@@ -103,7 +110,6 @@ def homepage():
     usuario = Usuarios.query.filter_by(Nombre=session['usuario']).first()
     cursos = usuario.cursos_inscritos if usuario else []
     return render_template('home.html', usuario=usuario.Nombre, cursos=cursos)
-    
 
 @app.route('/cursos')
 @rol_requerido(['estudiante'])

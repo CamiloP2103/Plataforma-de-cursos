@@ -53,16 +53,35 @@ body {
   }
   
   .main-content h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
+    font-size: 40px; 
     font-weight: bold;
+    color: #ffff; 
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 2px; /* Espaciado entre letras para mejor legibilidad */
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); /* Efecto de sombra para dar profundidad */
   }
   
+.main-content h2::after {
+    content: "";
+    display: block;
+    width: 70%;
+    height: 4px;
+    background: #FFD700;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
   .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-  }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaciado entre las tarjetas */
+    justify-content: center; /* Centra las tarjetas */
+}
   
   .course-card {
     background-color: rgba(255, 255, 255, 0.85);
@@ -78,6 +97,7 @@ body {
     box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   }
   
+
   /* Footer */
   footer {
     background-color: rgba(6, 54, 128, 0.9);

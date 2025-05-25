@@ -5,7 +5,6 @@
 
 -En la interfaz de incio de sesion, agregar algunas imagenes relacionadas a cada curso que se muestre dentro del coursecard
 
-ajustar el diseño y que se vea homogéneo en todas las pantallas 
 Validar que se cumplan todas las practicas SOLID al 100% hay algunas funciones, pero como agregue más código y funciones hay que chequearlo de nuevo 
 agregar CI / CD en para despliegue continuo e integración continua 
 hay dos pruebas unitarias creadas, hay que crear 3 mas

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Cursos Disponibles</title>
   <link rel="stylesheet" href="../css/diseno.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='../css/course_cardcss') }}">
 </head>
 <body>
   <header>
@@ -23,7 +24,7 @@
           <div class="course-card">
             <h3>{{ curso.nombre_curso }}</h3>
             <p>{{ curso.descripcion }}</p>
-            <a href="/inscribirse/{{ curso.id_curso }}" class="btn">Inscribirse</a>
+            <a href="/inscribirse/{{ curso.id_curso }}" class="btn_course">📝 Inscribirse</a>
           </div>
         {% endfor %}
       {% else %}
