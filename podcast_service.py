@@ -3,13 +3,13 @@ import os
 import shutil
 from uuid import uuid4
 
-def generar_podcast_desde_pdf(pdf_path, tono="Fun", duracion="Medium (3-5 min)", idioma="Spanish"):
-    client = Client("https://11ed8fab65c089dcb4.gradio.live/")
+def generar_podcast_desde_pdf(pdf_path, tono="Fun", duracion="Medium (3-5 min)", idioma="", pregunta=""):
+    client = Client("https://167ca4ffaba996c8d2.gradio.live/")
     try:
         result = client.predict(
             files=[file(pdf_path)],
             url="",
-            question="",
+            question=pregunta,
             tone=tono,
             length=duracion,
             language=idioma,

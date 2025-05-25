@@ -9,7 +9,7 @@ from podcast_service import generar_podcast_desde_pdf
 import random
 import os
 
-app = Flask(__name__, template_folder='html', static_folder='css')
+app = Flask(__name__, template_folder='html', static_folder='static')
 
 app.config.from_object(Config)
 db.init_app(app)
@@ -139,7 +139,7 @@ def inscribirse(curso_id):
     
     return redirect('/home')
 
-@app.route('/generar_podcast/<int:id>', methods=['GET'])
+@app.route('/generar_podcast/<int:id>', methods=['GET', 'POST'])
 @rol_requerido(['estudiante'])
 def generar_podcast(id):
     archivo = ArchivosCurso.query.get_or_404(id)
@@ -148,6 +148,11 @@ def generar_podcast(id):
     if not os.path.exists(pdf_path):
         flash("El archivo no existe.")
         return redirect(request.referrer or '/home')
+    
+    if request.method == 'POST':
+        pregunta = request.form.get("pregunta", "")
+        idioma = request.form.get("idioma", "")
+        resultado = generar_podcast_desde_pdf(pdf_path, pregunta=pregunta, idioma=idioma)
 
     # Si ya tiene un podcast generado, lo usamos directamente
     if archivo.ruta_podcast:
@@ -287,7 +292,3 @@ def ver_curso(curso_id):
 
     return render_template('curso_estudiante.html', usuario=usuario.Nombre, curso=curso)    
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
