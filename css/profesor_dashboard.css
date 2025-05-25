@@ -84,13 +84,15 @@ body {
 }
   
   .course-card {
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    color: #000;
+    background: linear-gradient(145deg, #ffffffcc, #e6e6e6cc); /* glassmorphism */
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    color: #000; /* keep text black */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
   
   .course-card:hover {
     transform: translateY(-5px);
