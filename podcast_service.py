@@ -25,7 +25,7 @@ def generar_podcast_desde_pdf(pdf_path, tono="Fun", duracion="Medium (3-5 min)",
         filename = f"podcast_{uuid4().hex}.mp3"
         output_path = os.path.join(output_dir, filename)
 
-        # Copiar archivo local generado por Gradio a static/podcasts/ Definitivo para despliegue 
+        # Copiar archivo local generado por Gradio a static/podcasts/ Definitivo para despliegue final 
         shutil.copy(ruta_temporal_mp3, output_path)
 
         ruta_relativa = os.path.join("static", "podcasts", filename)
