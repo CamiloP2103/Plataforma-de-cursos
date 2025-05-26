@@ -18,13 +18,9 @@ jobs:
       # El paso "Configurar Python" ha sido ELIMINADO.
       # El runner usará el Python ya instalado en el servidor.
 
-      # Paso 2: Instala o actualiza las dependencias necesarias
-      - name: 2. Instalar dependencias
-        run: pip install -r requirements.txt
-        shell: cmd
 
-      # Paso 3: Reinicia la aplicación reiniciando la Tarea Programada
-      - name: 3. Reiniciar la aplicación (Tarea Programada)
+      # Paso 2: Reinicia la aplicación reiniciando la Tarea Programada
+      - name: 2. Reiniciar la aplicación (Tarea Programada)
         run: |
           schtasks /end /tn "AppPlataformaCursos"
           schtasks /run /tn "AppPlataformaCursos"
