@@ -7,3 +7,4 @@ Validar que se cumplan todas las practicas SOLID al 100% hay algunas funciones, 
 agregar CI / CD en para despliegue continuo e integración continua 
 hay dos pruebas unitarias creadas, hay que crear 3 mas
 Prueba de envio 
+Prueba de de deploy
