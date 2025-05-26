@@ -171,7 +171,7 @@ def generar_podcast(id):
         ruta_podcast, transcripcion = resultado
 
           
-        # ✅ GUARDAR EN BASE DE DATOS MY SQL 
+        # ✅ GUARDAR EN BASE DE DATOS MY SQL DESPLEIGUE AUTOMATICO
         ruta_podcast = resultado[0].replace("\\", "/")
         archivo.ruta_podcast = ruta_podcast
         archivo.transcripcion = transcripcion
