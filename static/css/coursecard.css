@@ -23,11 +23,18 @@
   align-items: center;
   margin-bottom: 24px;
   box-sizing: border-box;
+  height: 300px; /* Altura fija por defecto */
+  overflow: hidden;
+  position: relative;
+  transition: height 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
 }
 
 .course-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  height: auto; /* Permite expandirse según el contenido */
+  min-height: 300px;
+  overflow: visible;
 }
 
 .course-card h3 {
@@ -52,6 +59,15 @@
   color: #555;
   text-align: center;
   margin-bottom: 18px;
+  max-height: 80px; /* Limita la altura de la descripción */
+  overflow: hidden; /* Oculta el texto que se desborda */
+  transition: max-height 0.3s;
+}
+
+.course-card:hover p {
+  max-height: 1000px; /* Expande la descripción */
+  overflow: visible;
+  box-shadow: none;
 }
 
 .btn_course {
