@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../static/css/profesor_dashboard.css">
 </head>
 <body>
-   <header>
+  <header>
     <div style="display: flex; align-items: center; gap: 15px;">
       <img src="https://server.ucatolica.edu.co/images/logo_u.png" alt="Logo de la plataforma" style="height: 50px;">
       <h1>Panel de Profesor. Bienvenido, {{ usuario }}</h1>
@@ -16,22 +16,24 @@
       <a href="/profesor/crear_curso">➕ Crear Curso</a>
       <a href="/logout">Cerrar sesión</a>
     </nav>
-  </header>   
+  </header>
 
-<!-- Gestión de cursos -->
-
+  <!-- Gestión de cursos -->
   <main class="main-content">
     <h2>📚 Cursos que impartes </h2>
-	<br>
+    <br>
     <div class="courses-grid" id="gestion-cursos">
       {% if cursos %}
         {% for curso in cursos %}
           <div class="course-card">
             <h3>{{ curso.nombre_curso }}</h3>
             <p>{{ curso.descripcion }}</p>
-			<a href="/profesor/editar_curso/{{ curso.id_curso }}">✏️ Editar</a>
-			<form method="POST" action="/profesor/eliminar_curso/{{ curso.id_curso }}" onsubmit="return confirm('¿Estás seguro de eliminar este curso?');">
-			<button type="submit">🗑️ Eliminar</button>
+            <div style="display: flex; gap: 8px; margin-top: 8px;">
+              <a href="/profesor/editar_curso/{{ curso.id_curso }}" class="btn-editar">✏️ Editar</a>
+              <form method="POST" action="/profesor/eliminar_curso/{{ curso.id_curso }}" onsubmit="return confirm('¿Estás seguro de eliminar este curso?');" style="display:inline;">
+                <button type="submit" class="btn-eliminar">🗑️ Eliminar</button>
+              </form>
+            </div>
           </div>
         {% endfor %}
       {% else %}
@@ -41,8 +43,8 @@
       {% endif %}
     </div>
   </main>
-   <footer>
+  <footer>
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
-  </footer> 
+  </footer>
 </body>
 </html>

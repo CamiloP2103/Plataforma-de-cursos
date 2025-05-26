@@ -27,7 +27,7 @@ body {
   
   /* Ajustes para el header para que combine con el fondo */
   header {
-    background-color: rgba(246, 181, 17, 0.9); /* Naranja translúcido */
+    background-color: rgba(246, 181, 17, 0.9); 
     color: #000;
     padding: 20px;
     display: flex;
@@ -63,7 +63,7 @@ body {
     position: relative;
     display: inline-block;
     letter-spacing: 2px; /* Espaciado entre letras para mejor legibilidad */
-    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); /* Efecto de sombra para dar profundidad */
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); /* Efecto de sombra  */
   }
   
 .main-content h2::after {
@@ -82,16 +82,15 @@ body {
     gap: 24px;
     justify-content: center;
     align-items: flex-start;
-    /* Elimina cualquier ancho fijo que cause overflow */
     margin-bottom: 80px; /* espacio para el footer */
 }
   
   .course-card {
-    background: linear-gradient(145deg, #ffffffcc, #e6e6e6cc); /* glassmorphism */
+    background: linear-gradient(145deg, #ffffffcc, #e6e6e6cc); 
     border-radius: 16px;
     padding: 24px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    color: #000; /* keep text black */
+    color: #000; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -130,3 +129,73 @@ body {
     z-index: 1;
     font-size: 14px;
   }
+
+  /* ====== Botones de editar y eliminar en el dashboard de profesor ====== */
+.btn-editar,
+.btn-eliminar {
+  display: inline-block;
+  padding: 8px 18px;
+  margin: 4px 6px 0 0;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  box-shadow: 0 2px 8px #06368011;
+  letter-spacing: 0.02em;
+}
+
+.btn-editar {
+  background: linear-gradient(135deg, #2F71B3 60%, #63a4ff 100%);
+  color: #fff;
+}
+.btn-editar:hover {
+  background: linear-gradient(135deg, #1e4fa3 60%, #2F71B3 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.btn-eliminar {
+  background: linear-gradient(135deg, #d32f2f 60%, #ff6b6b 100%);
+  color: #fff;
+}
+.btn-eliminar:hover {
+  background: linear-gradient(135deg, #b71c1c 60%, #d32f2f 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.btn-editar,
+.btn-eliminar {
+  display: inline-block;
+  padding: 8px 18px;
+  margin: 4px 6px 0 0;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  text-decoration: none;
+  box-shadow: 0 2px 8px #06368011;
+  letter-spacing: 0.02em;
+}
+.btn-editar {
+  background: linear-gradient(135deg, #2F71B3 60%, #63a4ff 100%);
+  color: #fff;
+}
+.btn-editar:hover {
+  background: linear-gradient(135deg, #1e4fa3 60%, #2F71B3 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.btn-eliminar {
+  background: linear-gradient(135deg, #d32f2f 60%, #ff6b6b 100%);
+  color: #fff;
+}
+.btn-eliminar:hover {
+  background: linear-gradient(135deg, #b71c1c 60%, #d32f2f 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}

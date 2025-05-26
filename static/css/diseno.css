@@ -135,12 +135,5 @@ body.home-dark-bg > * {
 /* 
   Los siguientes estilos han sido movidos a archivos CSS separados:
   - hero, stats, login-form, btn_course, progress-bar, course-card, etc.
-  Por favor, revisa los archivos:
-    - home.css
-    - cursos.css
-    - login.css
-    - coursecard.css
-    - etc.
-  y enlázalos en los HTML correspondientes.
 */
 

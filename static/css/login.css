@@ -98,7 +98,7 @@ input[type="password"]::-ms-clear {
   box-shadow: 0 0 8px #f6b51155;
 }
 
-/* Personalización del icono del calendario en navegadores modernos */
+/* Personalización del icono del calendario */
 .input-fecha::-webkit-calendar-picker-indicator {
   filter: invert(34%) sepia(99%) saturate(747%) hue-rotate(178deg) brightness(95%) contrast(92%);
   cursor: pointer;
