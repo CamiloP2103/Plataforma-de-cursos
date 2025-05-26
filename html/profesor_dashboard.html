@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Profesor - Plataforma de Cursos</title>
-  <link rel="stylesheet" href="../css/diseno.css">
-  <link rel="stylesheet" href="../css/profesor_dashboard.css">
+  <link rel="stylesheet" href="../static/css/diseno.css">
+  <link rel="stylesheet" href="../static/css/profesor_dashboard.css">
 </head>
 <body>
    <header>
@@ -29,6 +29,9 @@
           <div class="course-card">
             <h3>{{ curso.nombre_curso }}</h3>
             <p>{{ curso.descripcion }}</p>
+			<a href="/profesor/editar_curso/{{ curso.id_curso }}">✏️ Editar</a>
+			<form method="POST" action="/profesor/eliminar_curso/{{ curso.id_curso }}" onsubmit="return confirm('¿Estás seguro de eliminar este curso?');">
+			<button type="submit">🗑️ Eliminar</button>
           </div>
         {% endfor %}
       {% else %}

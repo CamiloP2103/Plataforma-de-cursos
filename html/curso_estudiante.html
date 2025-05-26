@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Informacion sobre el curso</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='../css/diseno.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='../css/crear_curso.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/diseno.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/crear_curso.css') }}">
 </head>
 <body>
   <header>
@@ -30,8 +30,19 @@
         {% for archivo in curso.archivos %}
           <li>
             <a href="{{ url_for('static', filename='uploads/' + archivo.ruta_archivo) }}" target="_blank">{{ archivo.nombre_archivo }}</a>
-			<a href="{{ url_for('generar_podcast', id=archivo.id) }}">🎧 Generar y escuchar podcast</a>
-          </li>
+			<form method="POST" action="{{ url_for('generar_podcast', id=archivo.id) }}">
+			<label for="pregunta_{{ archivo.id }}">Pregunta para el podcast:</label><br>
+			<input type="text" name="pregunta" id="pregunta_{{ archivo.id }}" placeholder="¿Sobre qué tema quieres que hable?" style="width: 80%;"><br><br>
+
+			<label for="idioma_{{ archivo.id }}">Idioma:</label>
+			<select name="idioma" id="idioma_{{ archivo.id }}">
+			<option value="Spanish">Spanish</option>
+			<option value="English">English</option>
+			</select><br><br>
+          
+			<button type="submit">🎧 Generar podcast</button>
+			</form>
+		  </li>
         {% endfor %}
       </ul>
     {% else %}
@@ -46,3 +57,8 @@
     <p>&copy; 2025 Mi Plataforma de Cursos. Todos los derechos reservados.</p>
   </footer> 
 </html>
+
+
+
+    <button type="submit">🎧 Generar podcast</button>
+</form>
