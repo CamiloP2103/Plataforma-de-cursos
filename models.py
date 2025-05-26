@@ -16,6 +16,8 @@ class Usuarios(db.Model):
     Contraseña = db.Column(db.String(256))
     Tipo_usr = db.Column(db.Integer)
     Estado = db.Column(db.Boolean, default=True)
+    # se agrega campo de fecha 
+    fecha_registro = db.Column(db.DateTime, default=db.func.current_timestamp())
     # Relación con cursos inscritos (para estudiantes)
     cursos_inscritos = db.relationship('Cursos', secondary=curso_estudiante, backref='estudiantes')
     
