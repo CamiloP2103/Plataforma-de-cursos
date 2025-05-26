@@ -151,12 +151,15 @@ def generar_podcast(id):
     
         # Si ya tiene podcast generado, lo usamos directamente (no se regenera)
     if archivo.ruta_podcast:
+        mensaje_info = "✅ Este podcast ya fue generado anteriormente."
         return render_template(
-            'podcast_generado.html',
-            audio_url='/' + archivo.ruta_podcast,
-            archivo=archivo,
-            transcripcion=archivo.transcripcion
-        )
+        'podcast_generado.html',
+        audio_url='/' + archivo.ruta_podcast,
+        archivo=archivo,
+        transcripcion=archivo.transcripcion,
+        mensaje_info=mensaje_info
+    )
+
 
     if request.method == 'POST':
         pregunta = request.form.get("pregunta", "")
@@ -168,7 +171,7 @@ def generar_podcast(id):
         ruta_podcast, transcripcion = resultado
 
           
-        # ✅ GUARDAR EN BASE DE DATOS
+        # ✅ GUARDAR EN BASE DE DATOS MY SQL 
         ruta_podcast = resultado[0].replace("\\", "/")
         archivo.ruta_podcast = ruta_podcast
         archivo.transcripcion = transcripcion
